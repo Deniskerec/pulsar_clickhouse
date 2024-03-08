@@ -45,13 +45,21 @@ pip install pulsar-client clickhouse-driver
 
 ### Initial Data Ingestion Test
 
+
+
 After starting your Docker containers, perform a basic test to verify that the setup correctly processes data.
+
+1. **Access ClickHouse CLI:** Connect to the ClickHouse client:
+
+   ```bash
+   python data_ingestion_test.py
+   ```
+OR 
 
 1. **Access ClickHouse CLI:** Connect to the ClickHouse client:
    ```bash
    docker exec -it newafc_end_2_end-clickhouse-server-1 clickhouse-client
    ```
-
 2. **Create a Test Database and Table (skip if already created):**
    ```sql
    CREATE DATABASE IF NOT EXISTS test;
