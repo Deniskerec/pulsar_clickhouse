@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+  pulsar:
+    image: apachepulsar/pulsar:2.9.1  # Use the Apache Pulsar image version 2.9.1
+    command: bin/pulsar standalone  # Start Pulsar in standalone mode
+    ports:
+      - "6650:6650"  # Expose port 6650 for the Pulsar binary protocol
+      - "8080:8080"  # Expose port 8080 for the Pulsar Admin API
+
+  clickhouse:
+    image: yandex/clickhouse-server  # Use the Yandex ClickHouse server image
+    ports:
+      - "8123:8123"  # Expose port 8123 for the ClickHouse HTTP interface
+      - "9000:9000"  # Expose port 9000 for the ClickHouse native interface
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse  # Mount a volume for ClickHouse data persistence
+
+  postgres:
+    image: postgres  # Use the official PostgreSQL image
+    environment:
+      POSTGRES_DB: pulsar_manager  # Set the name of the PostgreSQL database
+      POSTGRES_USER: pulsar  # Set the username for PostgreSQL authentication
+      POSTGRES_PASSWORD: pulsar  # Set the password for PostgreSQL authentication
+    ports:
+      - "5432:5432"  # Expose port 5432 for PostgreSQL connections
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Mount a volume for PostgreSQL data persistence
+
+  pulsar-manager:
+    image: apachepulsar/pulsar-manager:v0.2.0  # Use the Apache Pulsar Manager image version v0.2.0
+    depends_on:
+      - pulsar  # Depend on the Pulsar service
+      - postgres  # Depend on the PostgreSQL service
+    ports:
+      - "9527:9527"  # Expose port 9527 for accessing the Pulsar Manager web UI
+    environment:
+      REDIRECT_HOST: localhost  # Set the host for redirecting to the Pulsar Manager web UI
+      REDIRECT_PORT: 9527  # Set the port for redirecting to the Pulsar Manager web UI
+      DRIVER_CLASS_NAME: org.postgresql.Driver  # Set the JDBC driver class name for PostgreSQL
+      URL: jdbc:postgresql://postgres:5432/pulsar_manager  # Set the JDBC URL for PostgreSQL
+      USERNAME: pulsar  # Set the username for PostgreSQL authentication
+      PASSWORD: pulsar  # Set the password for PostgreSQL authentication
+      LOG_LEVEL: DEBUG  # Set the log level for Pulsar Manager
+
+volumes:
+  postgres_data:  # Define a volume for PostgreSQL data persistence
+  clickhouse_data:  # Define a volume for ClickHouse data persistence
+
