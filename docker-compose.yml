@@ -1,48 +1,46 @@
 version: '3.7'
 services:
   pulsar:
-    image: apachepulsar/pulsar:2.9.1  # Use the Apache Pulsar image version 2.9.1
-    command: bin/pulsar standalone  # Start Pulsar in standalone mode
+    image: apachepulsar/pulsar:2.9.1
+    command: bin/pulsar standalone
     ports:
-      - "6650:6650"  # Expose port 6650 for the Pulsar binary protocol
-      - "8080:8080"  # Expose port 8080 for the Pulsar Admin API
+      - "6650:6650"
+      - "8080:8080"
 
   clickhouse:
-    image: yandex/clickhouse-server  # Use the Yandex ClickHouse server image
+    image: yandex/clickhouse-server
     ports:
-      - "8123:8123"  # Expose port 8123 for the ClickHouse HTTP interface
-      - "9000:9000"  # Expose port 9000 for the ClickHouse native interface
+      - "8123:8123"
+      - "9000:9000"
     volumes:
-      - clickhouse_data:/var/lib/clickhouse  # Mount a volume for ClickHouse data persistence
-
-  postgres:
-    image: postgres  # Use the official PostgreSQL image
+      - clickhouse_data:/var/lib/clickhouse
+  postgres_14:
+    image: postgres:14
     environment:
-      POSTGRES_DB: pulsar_manager  # Set the name of the PostgreSQL database
-      POSTGRES_USER: pulsar  # Set the username for PostgreSQL authentication
-      POSTGRES_PASSWORD: pulsar  # Set the password for PostgreSQL authentication
+      POSTGRES_DB: pulsar_manager
+      POSTGRES_USER: pulsar
+      POSTGRES_PASSWORD: pulsar
     ports:
-      - "5432:5432"  # Expose port 5432 for PostgreSQL connections
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Mount a volume for PostgreSQL data persistence
+      - postgres_data_14:/var/lib/postgresql/data
 
   pulsar-manager:
-    image: apachepulsar/pulsar-manager:v0.2.0  # Use the Apache Pulsar Manager image version v0.2.0
+    image: apachepulsar/pulsar-manager:v0.2.0
     depends_on:
-      - pulsar  # Depend on the Pulsar service
-      - postgres  # Depend on the PostgreSQL service
+      - pulsar
+      - postgres_14
     ports:
-      - "9527:9527"  # Expose port 9527 for accessing the Pulsar Manager web UI
+      - "9527:9527"
     environment:
-      REDIRECT_HOST: localhost  # Set the host for redirecting to the Pulsar Manager web UI
-      REDIRECT_PORT: 9527  # Set the port for redirecting to the Pulsar Manager web UI
-      DRIVER_CLASS_NAME: org.postgresql.Driver  # Set the JDBC driver class name for PostgreSQL
-      URL: jdbc:postgresql://postgres:5432/pulsar_manager  # Set the JDBC URL for PostgreSQL
-      USERNAME: pulsar  # Set the username for PostgreSQL authentication
-      PASSWORD: pulsar  # Set the password for PostgreSQL authentication
-      LOG_LEVEL: DEBUG  # Set the log level for Pulsar Manager
+      REDIRECT_HOST: localhost
+      REDIRECT_PORT: 9527
+      DRIVER_CLASS_NAME: org.postgresql.Driver
+      URL: jdbc:postgresql://postgres:5432/pulsar_manager
+      USERNAME: pulsar
+      PASSWORD: pulsar
+      LOG_LEVEL: DEBUG
 
 volumes:
-  postgres_data:  # Define a volume for PostgreSQL data persistence
-  clickhouse_data:  # Define a volume for ClickHouse data persistence
-
+  postgres_data_14:
+  clickhouse_data:

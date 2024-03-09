@@ -35,4 +35,4 @@ if __name__ == "__main__":
         backup_database(config, backup_file_name)
 
 
-
+pg_dump -U pulsar -h localhost -d postgres -F c -f /Users/denis/Documents/newAFC_end_2_end/backup_file_name.dump

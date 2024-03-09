@@ -35,7 +35,7 @@ def pulsar(ch_client, db_name, table_name, pulsar_client, topic):
 
     try:
         for i in range(10, 30):
-            message = f"Test_new_denis {i}"
+            message = f"debus {i}"
             insert_query = f"INSERT INTO {db_name}.{table_name} (id, message) VALUES"
             ch_client.execute(f"{insert_query} ({i}, '{message}')")
     except ch_errors.Error as e:
