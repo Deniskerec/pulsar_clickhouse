@@ -1,4 +1,4 @@
-# NewAFC End-to-End Analytics Pipeline
+# End-to-End Analytics Pipeline
 
 This repository contains Docker configurations for setting up an analytics pipeline using Apache Pulsar and ClickHouse, designed to ingest, process, and analyze real-time data streams.
 
