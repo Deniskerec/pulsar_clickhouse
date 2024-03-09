@@ -47,6 +47,35 @@ This project includes several Python scripts to handle database backups and data
 - This script is designed for targeted data migration, focusing on a specific table. It requires proper configuration of the remote database connection parameters in `remote_con.py`.
 
 ---
+## pg_dump 
+
+  ```bash
+pg_dump -U postgres -h localhost -d database_name -F c -f backup_file_name.dump
+  ```
+
+## scp
+  ```bash
+scp razvoj@IP:/home/razvoj/backup_file_name.dump /Users/denis/Documents/newAFC_end_2_end
+  ```
+
+
+## pg_restore
+
+If your backup file is in the custom format (.dump), use pg_restore:
+
+  ```bash
+pg_restore -U postgres -d new_database_name -h localhost -F c /path/to/your/backup_file_name.dump
+  ```bash
+in my case 
+  ```bash
+pg_restore -U pulsar -d afc_restored_database -h localhost -F c /Users/denis/Documents/newAFC_end_2_end/backup_file_name.dump
+  ```
+
+If your backup is a plain SQL file, use psql:
+
+  ```bash
+  psql -U postgres -d new_database_name -h localhost -f /path/to/your/backup_file_name.sql
+  ```
 
 # Additional Notes
 
@@ -54,3 +83,7 @@ This project includes several Python scripts to handle database backups and data
 - **Dependencies**: Install all required dependencies as specified in the project's root `README.md` or `requirements.txt` file.
 - **Support**: If you encounter any issues or require further assistance, please refer to the main project documentation or contact the development team.
 ```
+
+
+pg_restore -U pulsar -d afc_restored_database -h localhost -F c /Users/denis/Documents/newAFC_end_2_end/backup_file_name.dump
+
