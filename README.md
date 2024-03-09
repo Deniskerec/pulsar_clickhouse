@@ -52,7 +52,8 @@ After starting your Docker containers, perform a basic test to verify that the s
 1. **Access ClickHouse CLI:** Connect to the ClickHouse client:
 
    ```bash
-   python data_ingestion_test.py
+   python data_ingestion_test_new.py --(rewriten/error_handling)
+   python data_ingestion_test_old.py --(rewriten/basic)
    ```
 OR 
 

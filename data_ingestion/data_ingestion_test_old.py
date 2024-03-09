@@ -29,7 +29,7 @@ for i in range(10):  # Example: Send 10 messages
 
 # Assuming direct insertion to ClickHouse, simulate consuming the message
 for i in range(10):
-    message = f"Message {i}"
+    message = f"old_msg {i}"
     insert_query = f"INSERT INTO {db_name}.{table_name} (id, message) VALUES"
     ch_client.execute(f"{insert_query} ({i}, '{message}')")
 
