@@ -6,7 +6,7 @@ This repository contains Docker configurations for setting up an analytics pipel
 
 - [Getting Started](#getting-started)
   - [Python Environment Setup](#python-environment-setup)
-  - [Initial Data Ingestion Test](#initial-data-ingestion-test)
+- [How to get started](#how-to)
 - [Understanding the Analytics Pipeline](#understanding-the-analytics-pipeline)
 - [Connecting Apache Pulsar with ClickHouse](#connecting-apache-pulsar-with-clickhouse)
 - [Considerations for Handling Millions of Data Per Day](#considerations-for-handling-millions-of-data-per-day)
@@ -44,53 +44,12 @@ source venv/bin/activate
 pip install pulsar-client clickhouse-driver
 ```
 
-### Initial Data Ingestion Test
+### How to 
+Every sub directory has its own README.mb where the process is described in detail.
 
-
-
-After starting your Docker containers, perform a basic test to verify that the setup correctly processes data.
-
-1. **Access ClickHouse CLI:** Connect to the ClickHouse client:
-
-   ```bash
-   python data_ingestion_test_new.py --(rewriten/error_handling)
-   python data_ingestion_test_old.py --(rewriten/basic)
-   ```
-OR 
-
-1. **Access ClickHouse CLI:** Connect to the ClickHouse client:
-   ```bash
-   docker exec -it newafc_end_2_end-clickhouse-server-1 clickhouse-client
-   ```
-2. **Create a Test Database and Table (skip if already created):**
-   ```sql
-   CREATE DATABASE IF NOT EXISTS test;
-
-   USE test;
-
-   CREATE TABLE test_events (
-       EventDate Date,
-       EventTime DateTime,
-       EventType String,
-       EventData String
-   ) ENGINE = MergeTree()
-   PARTITION BY toYYYYMMDD(EventDate)
-   ORDER BY (EventTime, EventType);
-   ```
-
-3. **Produce Test Messages to Pulsar:**
-   ```bash
-   docker exec -it newafc_end_2_end-pulsar-1 bin/pulsar-client produce my-topic --messages "hello from pulsar"
-   ```
-
-4. **Verify Data Ingestion in ClickHouse:**
-   ```bash
-   docker exec -it newafc_end_2_end-clickhouse-server-1 clickhouse-client
-   ```
-   Then in the ClickHouse CLI:
-   ```sql
-   SELECT * FROM test.test_events;
-   ```
+We can test Pulsar sending msg. directly to Clickhouse 
+__
+Other cases are migration of data from remote datases to local pgsql database and migrating data to Clickhouse for performance testing.
 
 ## Understanding the Analytics Pipeline
 
