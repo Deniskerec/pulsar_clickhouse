@@ -4,7 +4,7 @@ def create_database_and_schema():
 
   # docker clichouse does not have username/pw by default
 
-    clickhouse_host = 'your_clickhouse_host'
+    clickhouse_host = 'localhost'
     clickhouse_port = '9000'  
     #clickhouse_user = 'your_clickhouse_user'
     #clickhouse_password = 'your_clickhouse_password'
