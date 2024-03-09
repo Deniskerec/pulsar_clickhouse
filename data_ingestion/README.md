@@ -40,9 +40,6 @@ python data_ingestion_test_old.py
 ## Important Notes
 
 - Always ensure you're using the correct script for your data ingestion needs. The new script (`data_ingestion_test_new.py`) is preferred for its advanced error handling and improved project layout.
-- The old script (`data_ingestion_test_old.py`) is maintained for legacy purposes and might not receive further updates.
+- The old script (`data_ingestion_test_old.py`) is maintained for legacy purposes and might not receive further updates :)
 
-## Support
 
-For any issues or support related to these scripts, please refer to the project documentation or contact the development team directly.
-```
