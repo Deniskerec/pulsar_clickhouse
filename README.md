@@ -11,6 +11,7 @@ This repository contains Docker configurations for setting up an analytics pipel
 - [Connecting Apache Pulsar with ClickHouse](#connecting-apache-pulsar-with-clickhouse)
 - [Considerations for Handling Millions of Data Per Day](#considerations-for-handling-millions-of-data-per-day)
 - [Stopping Services](#stopping-services)
+- [Backup PG dump file](#backup-pg_dump)
 
 ## Getting Started
 
@@ -130,3 +131,12 @@ To stop the Docker containers and halt the services, run:
 ```bash
 docker-compose down
 ```
+
+## Backup (pg_dump)
+
+```bash
+python3 data_ingestion/data_ingestion_test_new.py
+```
+OR 
+
+pg_dump file is saved on company one_drive (talk to denis if needed)
