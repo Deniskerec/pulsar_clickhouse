@@ -1,8 +1,7 @@
 db_info/
 *.dump
-db_info/*
-!db_info/.gitkeep
-!db_info/README.md
-!db_info/db_backup_info_template.py
-!db_info/remote_con_template.py.py
-
+data_migration/db_info/*
+!data_migration/db_info/.gitkeep
+!data_migration/db_info/README.md
+!data_migration/db_info/db_backup_info_template.py
+!data_migration/db_info/remote_con_template.py
