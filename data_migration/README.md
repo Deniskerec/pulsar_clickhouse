@@ -1,4 +1,4 @@
-```
+
 # `db_info` Directory Setup Instructions
 
 This directory is crucial for configuring the database connections required for the application's data operations. Follow these steps to set up the database configuration files properly.
@@ -14,8 +14,6 @@ This directory is crucial for configuring the database connections required for 
    - Modify `db_backup_info.py` to include your database backup settings.
 
 Ensure you do not commit the actual configuration files (`remote_con.py`, `db_backup_info.py`) to the repository. These files should be listed in your `.gitignore` to prevent accidental inclusion.
-
----
 
 # Project Scripts Documentation
 
