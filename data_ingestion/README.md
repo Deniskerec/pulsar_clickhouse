@@ -1,4 +1,4 @@
-```
+
 # Data Ingestion Scripts Overview
 
 This directory contains scripts related to data ingestion, showcasing both a new and an old approach to handling data ingestion processes. These scripts are part of the data pipeline that feeds into our system, designed with error handling and project layout restructuring in mind.
