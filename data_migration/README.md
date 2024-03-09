@@ -1,3 +1,10 @@
+# db_info Directory
+
+This directory contains database configuration files. 
+Rename `db_backup_info_template.py` to `db_backup_info.py` and fill in your database details.
+Rename `remote_con_template.py` to `remote_con.py` and fill in your database details.
+
+
 # data_migration/db_info/db_backup_info.py
 
 db_backup_info = {

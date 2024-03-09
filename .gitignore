@@ -1,3 +1,8 @@
 db_info/
 *.dump
+db_info/*
+!db_info/.gitkeep
+!db_info/README.md
+!db_info/db_backup_info_template.py
+!db_info/remote_con_template.py.py
 
