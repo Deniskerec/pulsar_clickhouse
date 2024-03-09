@@ -10,8 +10,7 @@ This repository contains Docker configurations for setting up an analytics pipel
 - [Understanding the Analytics Pipeline](#understanding-the-analytics-pipeline)
 - [Connecting Apache Pulsar with ClickHouse](#connecting-apache-pulsar-with-clickhouse)
 - [Considerations for Handling Millions of Data Per Day](#considerations-for-handling-millions-of-data-per-day)
-- [Stopping Services](#stopping-services)
-- [Backup PG dump file](#backup-pg_dump)
+
 
 ## Getting Started
 
@@ -27,10 +26,14 @@ To start using this setup, follow these steps:
    cd newAFC_end_2_end
    ```
 
-3. **Start the Docker containers:**
+3. **Start/Stop the Docker containers:**
    ```bash
    docker-compose up -d
    ```
+   ```bash
+   docker-compose down
+   ```
+ 
 
 This will initialize Apache Pulsar and ClickHouse services in Docker containers.
 
@@ -83,19 +86,3 @@ Overhead: The compatibility layer might introduce additional overhead compared t
 Compatibility limitations: While Pulsar aims to provide comprehensive Kafka compatibility, there may be edge cases or specific Kafka features not fully supported.
 For handling millions of data per day, both approaches are capable, but the choice depends on your specific scenario. If you already use Kafka or want a simpler setup with less custom development, leveraging Pulsar's Kafka compatibility might be preferable. However, if you need custom processing logic, lower latency, or want to avoid any compatibility layer overhead, direct consumption with custom consumers could be more beneficial.
 
-## Stopping Services
-
-To stop the Docker containers and halt the services, run:
-
-```bash
-docker-compose down
-```
-
-## Backup (pg_dump)
-
-```bash
-python3 data_ingestion/data_ingestion_test_new.py
-```
-OR 
-
-pg_dump file is saved on company one_drive (talk to denis if needed)
