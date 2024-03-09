@@ -112,4 +112,4 @@ def create_database_and_schema():
     print("Schema creation completed.")
 
 if __name__ == "__main__":
-    create_schema()
+    create_database_and_schema()
