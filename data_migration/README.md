@@ -1,4 +1,8 @@
 
+- [Manual : currently working](#Manual-backup-scp-and-restoration-process-working )
+
+
+
 # `db_info` Directory Setup Instructions
 
 This directory is crucial for configuring the database connections required for the application's data operations. Follow these steps to set up the database configuration files properly.
@@ -58,14 +62,15 @@ pg_dump -U postgres -h localhost -d database_name -F c -f backup_file_name.dump
 scp razvoj@IP:/home/razvoj/backup_file_name.dump /Users/denis/Documents/newAFC_end_2_end
   ```
 
+## Manual backup scp and restoration process-working 
 
-## pg_restore
+## pg_restore ##
 
 If your backup file is in the custom format (.dump), use pg_restore:
 
   ```bash
 pg_restore -U postgres -d new_database_name -h localhost -F c /path/to/your/backup_file_name.dump
-  ```bash
+  ```
 in my case 
   ```bash
 pg_restore -U pulsar -d afc_restored_database -h localhost -F c /Users/denis/Documents/newAFC_end_2_end/backup_file_name.dump
