@@ -31,13 +31,13 @@ def pulsar(ch_client, db_name, table_name, pulsar_client, topic):
         producer = pulsar_client.create_producer(topic)
         print("Producer created successfully.")
     except Exception as e:
-        print(f"Failed to create Pulsar producer: {e}")
+        print(f"Failed Pulsar producer: {e}")
         return
 
     start_time = time.time()  
     
     try:
-        for i in range(3000):  #number of insertions
+        for i in range(5000):  #number of insertions
             message_data = {
                 "ID": i,
                 "Timestamp": int(time.time()),
@@ -56,7 +56,7 @@ def pulsar(ch_client, db_name, table_name, pulsar_client, topic):
             ch_client.execute(insert_query)
             
     except Exception as e:
-        print(f"Error sending message to Pulsar or inserting into ClickHouse: {e}")
+        print(f"Error sending message to Pulsar or inserting into CH: {e}")
     finally:
         if producer:
             producer.close()
@@ -72,4 +72,4 @@ if __name__ == '__main__':
     if ch_client is not None and db_name is not None and table_name is not None:
         pulsar(ch_client, db_name, table_name, pulsar_client, topic)
     else:
-        print("Database initialization failed, exiting.")
+        print("Database initialization failed.")
