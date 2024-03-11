@@ -19,7 +19,7 @@ services:
     environment:
       POSTGRES_DB: pulsar_manager
       POSTGRES_USER: pulsar
-      POSTGRES_PASSWORD: pulsar
+      POSTGRES_PASSWORD: c
     ports:
       - "5432:5432"
     volumes:
