@@ -9,6 +9,8 @@ In this architecture, data is directly ingested from Apache Pulsar into ClickHou
 ### Kafka Connector Approach (Using Pulsar with Kafka Compatibility)
 
     Apache Pulsar --> Kafka --> Kafka Connector --> ClickHouse
+    
+As a buffer we can use RabbitMQ, Kafka, Pulsar, NATS... 
 
 Here, Apache Pulsar feeds data into Kafka, acting as a buffer and providing additional scalability and fault tolerance. The Kafka connector then streams this data into ClickHouse. This method is beneficial for handling high-volume data streams and adds a layer of resilience to the architecture.
 
