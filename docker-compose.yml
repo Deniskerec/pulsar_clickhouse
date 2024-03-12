@@ -6,7 +6,7 @@ services:
     ports:
       - "6650:6650"
       - "8080:8080"
-
+      - "9092:9092" 
   clickhouse:
     image: yandex/clickhouse-server
     ports:
